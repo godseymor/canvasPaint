@@ -1,40 +1,38 @@
+'use strict';
+
 (function () {
+  var paintField = document.querySelector('#paintField');
+  var canvasSettings = document.querySelector('.canvas__settings');
+
+  function setBrushStyle() {
+    ctx.strokeStyle = canvasSettings.colorStyle.value;
+    ctx.lineWidth = canvasSettings.brushStyle.value;
+  }
+  canvasSettings.addEventListener('change', setBrushStyle);
+
   var ctx = paintField.getContext('2d');
-  // ctx.linCap = 'square, round, butt';
-  var paint = false;
-})();
+  var isPainting = false;
 
-function init() {
-  var ctx = paintField.getContext('2d');
-  ctx.lineCap = 'round';
-  var paint = false;
-
-  paintField.addEventListener("mousedown", Down);
-  paintField.addEventListener("mouseup", Up);
-  paintField.addEventListener("mousemove", Move);
-
-  function Down(e) {
-    paint = true;
+  function onMouseDown(evt) {
+    isPainting = true;
     ctx.beginPath();
-    ctx.moveTo(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+    ctx.moveTo(evt.pageX - paintField.offsetLeft, evt.pageY - paintField.offsetTop);
   }
 
-  function Up(e) {
-    paint = false;
+  function onMouseMove(evt) {
+    if (isPainting) {
+      ctx.lineTo(evt.pageX - paintField.offsetLeft, evt.pageY - paintField.offsetTop);
+      ctx.stroke();
+    }
+  }
+
+  function onMouseUp() {
+    isPainting = false;
     ctx.closePath();
   }
 
-  function Move(e) {
-    if (!paint) return;
+  paintField.addEventListener('mousedown', onMouseDown);
+  paintField.addEventListener('mousemove', onMouseMove);
+  paintField.addEventListener('mouseup', onMouseUp);
 
-    ctx.lineTo(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
-    ctx.stroke();
-  }
-
-  function setStyle() {
-    ctx.strokeStyle = this.strokeStyle.value;
-    ctx.lineWidth = this.lineWidth.value;
-  }
-  document.querySelector('.canvas__settings').addEventListener('change', setStyle);
-}
-init();
+})();
