@@ -1,8 +1,13 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="ru">
 <head>
+  <meta charset="utf-8">
   <link rel="stylesheet" href="/css/style.css">
   <title>Тестовое задание</title>
+  <script>
+    var img = new Image();
+    img.src = "data:image/png;base64," + localStorage.getItem('img');
+  </script>
 </head>
 <body>
 <div class="canvas">
@@ -10,23 +15,26 @@
   <form class="canvas__settings">
     <label for="color">Цвет кисти</label>
     <select name="colorStyle" id="color" class="canvas__palette">
-      <option value="red" class="canvas__color canvas__color--red">Красный</option>
+      <option value="black" class="canvas__color canvas__color--black">Черный</option>
       <option value="green" class="canvas__color canvas__color--green">Зеленый</option>
       <option value="blue" class="canvas__color canvas__color--blue">Синий</option>
-      <option value="black" class="canvas__color canvas__color--black">Черный</option>
+      <option value="red" class="canvas__color canvas__color--red">Красный</option>
       <option value="violet" class="canvas__color canvas__color--violet">Фиолетовый</option>
     </select>
     <br />
     <label for="brush">Размер кисти</label>
     <select name="brushStyle" id="brush" class="canvas__brush">
-      <option value="5">Тонкая</option>
-      <option value="7">Средняя</option>
-      <option value="10">Жирная</option>
+      <option value="1">Тонкий</option>
+      <option value="5">Средний</option>
+      <option value="10">Толстый</option>
     </select>
     <br />
-    <button class="canvas__clear button">Очистить</button>
-    <button class="canvas__save button">Сохранить</button>
+    <input class="canvas__clear button" type="button" value="Очистить">
+    <input class="canvas__save button" type="button" value="Сохранить">
+    <br />
+    <input class="destroy button" type="button" value="clear localStorage (для тестирования)">
   </form>
+  
 </div>
 <script src="/js/paint.js"></script>
 </body>
