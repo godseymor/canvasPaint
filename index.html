@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Тестовое задание</title>
+</head>
+<body>
+<div class="canvas">
+  <canvas width="300" height="150" id="paintField"></canvas>
+  <form class="canvas__settings">
+    <label for="color">Цвет кисти</label>
+    <select name="colorStyle" id="color" class="canvas__palette">
+      <option value="red" class="canvas__color canvas__color--red">Красный</option>
+      <option value="green" class="canvas__color canvas__color--green">Зеленый</option>
+      <option value="blue" class="canvas__color canvas__color--blue">Синий</option>
+      <option value="black" class="canvas__color canvas__color--black">Черный</option>
+      <option value="violet" class="canvas__color canvas__color--violet">Фиолетовый</option>
+    </select>
+    <br />
+    <label for="brush">Размер кисти</label>
+    <select name="brushStyle" id="brush" class="canvas__brush">
+      <option value="small">Тонкая</option>
+      <option value="middle">Средняя</option>
+      <option value="big">Жирная</option>
+    </select>
+    <br />
+    <button class="canvas__clear button">Очистить</button>
+    <button class="canvas__save button">Сохранить</button>
+  </form>
+</div>
+<script src="/js/paint.js"></script>
+</body>
+</html>

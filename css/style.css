@@ -1,0 +1,22 @@
+body {
+  border: 8px solid #2c2c2c;
+  margin: 0;
+}
+.canvas {
+  display: flex;
+  flex-direction: column;
+  background: hsl(255, 0%, 75%);
+  min-height: calc(100vh - 16px);
+  justify-content: center;
+  align-items: center;
+}
+canvas {
+  background: #fff;
+  border: 2px dashed #2c2c2c;
+}
+.canvas__settings {
+  margin-top: 30px;
+}
+/* .canvas__color{
+  background: #2c2c2c;
+} */
