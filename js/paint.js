@@ -2,6 +2,13 @@
 
 (function () {
 
+  var Sizes = {
+    INIT_X : 0,
+    INIT_Y : 0,
+    END_X : 300,
+    END_Y : 150
+  };
+
   var canvasBody = document.querySelector('.canvas');
   var paintField = document.querySelector('#paintField');
   var canvasSettings = document.querySelector('.canvas__settings');
@@ -43,7 +50,7 @@
   }
 
   function onCanvasClearButtonClick() {
-    ctx.clearRect(0, 0, 300, 150);
+    ctx.clearRect(Sizes.INIT_X, Sizes.INIT_Y, Sizes.END_X, Sizes.END_Y);
   }
 
   function onCanvasSaveButtonClick() {
@@ -55,7 +62,7 @@
     var img = new Image();
     img.src = "data:image/png;base64," + source;
     img.onload = function () {
-      ctx.drawImage(img, 0, 0);
+      ctx.drawImage(img, Sizes.INIT_X, Sizes.INIT_Y);
     }
   }
 
