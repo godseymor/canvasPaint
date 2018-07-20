@@ -51,10 +51,6 @@
     localStorage.setItem('img', dataUrl);
   }
 
-  window.addEventListener('storage', function(evt) {
-    console.log(evt);
-  });
-
   paintField.addEventListener('mousedown', onMouseDown);
   paintField.addEventListener('mousemove', onMouseMove);
   canvasBody.addEventListener('mouseup', onMouseUp);
@@ -67,6 +63,14 @@
   document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.length > 0) {
       ctx.drawImage(img, 0, 0);
+    }
+  });
+
+  window.addEventListener('storage', function(evt) {
+    var newImg = new Image();
+    newImg.src = "data:image/png;base64," + evt.newValue;
+    newImg.onload = function () {
+      ctx.drawImage(newImg, 0, 0);
     }
   });
 
