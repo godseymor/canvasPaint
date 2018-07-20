@@ -11,24 +11,26 @@
 
   var canvasBody = document.querySelector('.canvas');
   var paintField = document.querySelector('#paintField');
-  var canvasSettings = document.querySelector('.canvas__settings');
+
+  var colorSettings = document.querySelector('.color-settings');
+  var sizeSettings = document.querySelector('.size-settings');
 
   var canvasClear = document.querySelector('.canvas__clear');
   var canvasSave = document.querySelector('.canvas__save');
 
-  document.querySelector('.destroy').addEventListener('click', function () {
-    localStorage.clear();
-  })
+  // document.querySelector('.destroy').addEventListener('click', function () {
+  //   localStorage.clear();
+  // })
 
   var ctx = paintField.getContext('2d');
   ctx.lineCap = 'round';
   var isDraw;
 
   function setBrushStyle() {
-    ctx.strokeStyle = canvasSettings.colorStyle.value;
-    ctx.lineWidth = canvasSettings.brushStyle.value;
+    ctx.strokeStyle = colorSettings.colorStyle.value;
+    ctx.lineWidth = sizeSettings.brushStyle.value;
 
-    document.body.style.borderColor = canvasSettings.colorStyle.value;
+    document.body.style.borderColor = colorSettings.colorStyle.value;
   }
 
   function onMouseDown(evt) {
@@ -70,7 +72,8 @@
   paintField.addEventListener('mousemove', onMouseMove);
   canvasBody.addEventListener('mouseup', onMouseUp);
 
-  canvasSettings.addEventListener('change', setBrushStyle);
+  colorSettings.addEventListener('change', setBrushStyle);
+  sizeSettings.addEventListener('change', setBrushStyle);
 
   canvasClear.addEventListener('click', onCanvasClearButtonClick);
   canvasSave.addEventListener('click', onCanvasSaveButtonClick);
