@@ -18,9 +18,9 @@
   var canvasClear = document.querySelector('.canvas__clear');
   var canvasSave = document.querySelector('.canvas__save');
 
-  // document.querySelector('.destroy').addEventListener('click', function () {
-  //   localStorage.clear();
-  // })
+  document.querySelector('.destroy').addEventListener('click', function () {
+    localStorage.clear();
+  })
 
   var ctx = paintField.getContext('2d');
   ctx.lineCap = 'round';
@@ -29,7 +29,6 @@
   function setBrushStyle() {
     ctx.strokeStyle = colorSettings.colorStyle.value;
     ctx.lineWidth = sizeSettings.brushStyle.value;
-
     document.body.style.borderColor = colorSettings.colorStyle.value;
   }
 
@@ -68,6 +67,8 @@
     }
   }
 
+  localStorage.length > 0 ? renderImage(localStorage.getItem('img')) : false;
+
   paintField.addEventListener('mousedown', onMouseDown);
   paintField.addEventListener('mousemove', onMouseMove);
   canvasBody.addEventListener('mouseup', onMouseUp);
@@ -77,13 +78,7 @@
 
   canvasClear.addEventListener('click', onCanvasClearButtonClick);
   canvasSave.addEventListener('click', onCanvasSaveButtonClick);
-
-  document.addEventListener('DOMContentLoaded', function() {
-    if (localStorage.length > 0) {
-      renderImage(localStorage.getItem('img'));
-    }
-  });
-
+  
   window.addEventListener('storage', function(evt) {
     renderImage(evt.newValue);
   });
